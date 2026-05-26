@@ -5,7 +5,7 @@ import { YoutubeTranscript } from "youtube-transcript";
 const app = express();
 
 const PORT = process.env.PORT || 3000;
-const API_TOKEN = process.env.API_TOKEN || "troque-essa-chave";
+const API_TOKEN = process.env.API_TOKEN || "glCqYQD5mDcpMTn6lvf0CkE3tNbWbul4";
 
 app.use(cors());
 app.use(express.json({ limit: "20mb" }));
