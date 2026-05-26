@@ -12,6 +12,7 @@ services:
       - NODE_ENV=production
       - PORT=3000
       - TZ=America/Sao_Paulo
+      - API_TOKEN=glCqYQD5mDcpMTn6lvf0CkE3tNbWbul4
 
     deploy:
       mode: replicated
