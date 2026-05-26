@@ -1,0 +1,259 @@
+{
+  "name": "Aplicação de Transcrição de Vídeos - v0.0.0.1",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "youtube-transcricaoo",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        144,
+        0
+      ],
+      "id": "5009920a-7602-4b07-b7db-ff1a2698f1ae",
+      "name": "Escutador de bolero",
+      "webhookId": "c49f15b3-2991-445a-b425-9e9365a9873d"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7752ede9-a801-47b6-99a9-c201be892b9c",
+              "name": "body.videoId",
+              "value": "={{ $('Escutador de bolero').item.json.body.videoId }}",
+              "type": "string"
+            },
+            {
+              "id": "26f66516-be89-4863-82b4-e1caf76c503a",
+              "name": "body.transcricao",
+              "value": "={{ $('Escutador de bolero').item.json.body.transcricao }}",
+              "type": "string"
+            },
+            {
+              "id": "660ebf57-2d8a-4bf2-93b5-fe69cdd3f848",
+              "name": "body.tamanhoTexto",
+              "value": "={{ $('Escutador de bolero').item.json.body.tamanhoTexto }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        352,
+        0
+      ],
+      "id": "044e871e-e956-47df-ac11-0e00661c93ff",
+      "name": "Dados"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1yWlyhY4jrB5e2PhumRG-9eGpK7xPG2pzUODyprEL1IU",
+          "mode": "list",
+          "cachedResultName": "Aplicação de Transcrição de Vídeos",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1yWlyhY4jrB5e2PhumRG-9eGpK7xPG2pzUODyprEL1IU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1432919333,
+          "mode": "list",
+          "cachedResultName": "Transcrições",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1yWlyhY4jrB5e2PhumRG-9eGpK7xPG2pzUODyprEL1IU/edit#gid=1432919333"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Transcrição": "={{ $('Dados').item.json.body.transcricao }}",
+            "Título": "={{ $('Pega Informações do vídeo').item.json.snippet.title }}",
+            "Descrição do Vídeo": "={{ $('Pega Informações do vídeo').item.json.snippet.description }}",
+            "N° de visualizações": "={{ $('Pega Informações do vídeo').item.json.statistics.viewCount }}",
+            "N° de curtidas": "={{ $('Pega Informações do vídeo').item.json.statistics.likeCount }}",
+            "N°  de palavras na trasncrição": "={{ $('Dados').item.json.body.tamanhoTexto }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Título",
+              "displayName": "Título",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Descrição do Vídeo",
+              "displayName": "Descrição do Vídeo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "N° de visualizações",
+              "displayName": "N° de visualizações",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "N° de curtidas",
+              "displayName": "N° de curtidas",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Transcrição",
+              "displayName": "Transcrição",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "N°  de palavras na trasncrição",
+              "displayName": "N°  de palavras na trasncrição",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        992,
+        0
+      ],
+      "id": "9e3f2c05-59f3-4bb3-9d68-526c35b87c7d",
+      "name": "BD de Trasncrições",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "DjYrb1pp1qULzKQW",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        784,
+        0
+      ],
+      "id": "1bcd7b86-305b-4998-94ff-2940c605208d",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "resource": "video",
+        "operation": "get",
+        "videoId": "={{ $('Dados').item.json.body.videoId }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.youTube",
+      "typeVersion": 1,
+      "position": [
+        576,
+        0
+      ],
+      "id": "ac85c9f3-5046-4123-a2a1-e708c33c60b2",
+      "name": "Pega Informações do vídeo",
+      "credentials": {
+        "youTubeOAuth2Api": {
+          "id": "ylwptKfHBN5MePFV",
+          "name": "YouTube account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Escutador de bolero": {
+      "main": [
+        [
+          {
+            "node": "Dados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dados": {
+      "main": [
+        [
+          {
+            "node": "Pega Informações do vídeo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "BD de Trasncrições",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pega Informações do vídeo": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "578e2438-fd35-46ad-a5e8-450879a54a26",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "785cb4edda0a34f1326a1983b29c5aff9813423cabf3e83773bcf8a189211b1f"
+  },
+  "id": "xbWev6czOcsYnlAM",
+  "tags": []
+}

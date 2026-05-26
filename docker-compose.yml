@@ -1,0 +1,10 @@
+services:
+  youtube-transcricao-api:
+    build: .
+    container_name: youtube-transcricao-api
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - API_TOKEN=glCqYQD5mDcpMTn6lvf0CkE3tNbWbul4

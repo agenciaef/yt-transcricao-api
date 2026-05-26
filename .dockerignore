@@ -1,0 +1,6 @@
+node_modules
+npm-debug.log
+transcricoes.xlsx
+transcricoes.txt
+credentials.json
+.env
